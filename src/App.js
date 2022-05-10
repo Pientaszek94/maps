@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import React from 'react';
+import {useJsApiLoader} from '@react-google-maps/api';
+import Main from './component/Main';
+import Results from './component/RouteFinder';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
 function App() {
+
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyBG0vrGNyiNOwqWdvE3ckxK9TspuDEDPwE",
+    libraries: ['places'],
+  })
+
+
+  if(!isLoaded) return <div>Loading</div>
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <Router>
+            <Routes>
+                    <Route path="/" exact element={<Main/>}/>
+                    <Route path="/results" exact element={<Results/>}/>
+            </Routes>
+      </Router> 
+
+
     </div>
   );
 }
