@@ -151,7 +151,7 @@ function RouteFinder() {
         <div className='whole-container'>
             <div className='results-container'>
                 <div className='home'>
-                  <button type='button'><Link to="/">Go back</Link></button>
+                  <button type='button'><Link to="/maps">Go back</Link></button>
                 </div>
                     <input type="number" placeholder="price per kilometer" min={0.1} step={0.1} ref={refMoney} onChange={MoneyCounter}></input>  
                     {distance && 

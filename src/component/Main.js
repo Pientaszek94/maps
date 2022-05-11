@@ -46,9 +46,9 @@ const ACTIONS={
 
     const [data, setData]=useState({});
 
-    const [origin, setOrigin]=useState('');
-    const [dest, setDest]=useState('');
-    const [kliks, setKliks]=useState('');
+    // const [origin, setOrigin]=useState('');
+    // const [dest, setDest]=useState('');
+    // const [kliks, setKliks]=useState('');
 
 
 
