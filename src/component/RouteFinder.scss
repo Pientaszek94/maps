@@ -72,6 +72,11 @@ body{
         }
     }
 
+    .Map-panel div .adp::nth-child(odd){
+       display: none;
+        
+    }
+
     @media print{
         .container{
             display: none;

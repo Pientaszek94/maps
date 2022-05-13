@@ -1,20 +1,13 @@
 import './App.scss';
-import React, { useState } from 'react';
 import {useLoadScript} from '@react-google-maps/api';
 import Main from './component/Main';
 import Results from './component/RouteFinder';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
+const libraries=['places'];
 
 function App() {
 
-
-  // const { isLoaded } = useJsApiLoader({
-  //   googleMapsApiKey: "AIzaSyBG0vrGNyiNOwqWdvE3ckxK9TspuDEDPwE",
-  //   libraries: ['places']
-  // })
-
-  const [libraries]=useState(['places']);
 
 
   const { isLoaded } = useLoadScript({

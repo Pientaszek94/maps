@@ -12,8 +12,8 @@ function RouteFinder() {
   const ref = React.useRef(null);
   const refPanel=useRef();
   const refMoney=useRef();
-
-
+  
+  
   const [map, setMap] = React.useState();
   const [directionsRes, setDirectionsRes]=useState();
   const [distance, setDistance]=useState('');
@@ -21,19 +21,19 @@ function RouteFinder() {
   const [cost, setCost]=useState();
   const [center, setCenter]=useState({});
   const [kliks, setKliks]=useState();
-
-
-  const [data, setData]=useState({});
-    
+  
+  
+  
   const directionService= new window.google.maps.DirectionsService();
   const directionsRen = new window.google.maps.DirectionsRenderer();
-
+  
+  const [data, setData]=useState(JSON.parse(sessionStorage.getItem('items')));
 
     
   useEffect(() => {
-    if (ref.current && !map) {
-        setMap(new window.google.maps.Map(ref.current, {}));
-    }
+    // if (ref.current && !map) {
+    //     setMap(new window.google.maps.Map(ref.current, {}));
+    // }
 
 
     const items=JSON.parse(sessionStorage.getItem('items'));
@@ -49,23 +49,25 @@ function RouteFinder() {
         })
     })
 
-    if(data){
-      calculateRoute();
-    }
+    calculateRoute();
     
+    
+  }, [ref, map]);
+  
+  
+  
 
-}, [ref, map]);
 
   
   const calculateRoute=()=>{
 
                 directionsRen.setPanel(refPanel.current);
-                directionsRen.setMap(map);
+                // directionsRen.setMap(map);
                 if(data.origin===""||data.dest==="") return;
 
                 const request={
-                    origin: data.origin,
-                    destination: data.dest,
+                    origin: data[0].origin,
+                    destination: data[0].dest,
                     travelMode: window.google.maps.TravelMode.DRIVING,
                     unitSystem: window.google.maps.UnitSystem.METRIC
                 }
@@ -81,12 +83,12 @@ function RouteFinder() {
 
 
                     // Kilometers per day
-                    if(data.kliks!==""){
+                    if(data[0].kliks!==""){
 
-                        if(data.kliks<=(results.routes[0].legs[0].distance.value/1000)){
+                        if(data[0].kliks<=(results.routes[0].legs[0].distance.value/1000)){
                               
                                 var km=results.routes[0].legs[0].distance.value/1000;
-                               var days=Math.ceil(km/data.kliks);
+                               var days=Math.ceil(km/data[0].kliks);
                             
                                 setDuration(days+" day(s)");
                         }
